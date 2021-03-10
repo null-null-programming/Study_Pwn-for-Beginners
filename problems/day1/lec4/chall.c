@@ -9,11 +9,10 @@ int main(){
     char my_name[]="null_null";
     char buff[0x10];
 
-    printf("My name is ... : ");
+    printf("I want to be nullptr... : ");
     scanf("%s",buff);
-    printf("%s!",my_name);
 
-    if(strcmp(my_name,"null_null")!=0){
+    if(strcmp(my_name,"nullptr")==0){
         win();
     }
 
