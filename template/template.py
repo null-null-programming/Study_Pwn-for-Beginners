@@ -5,14 +5,13 @@ class Pwn:
     elf=None
     libc=None
     data={}
-    logs=[]
     
-    def __init__(self,file_name,libc_name=None,HOST,PORT):
+    def __init__(self,file_name,libc_name=None,host_port):
         context.binary=file_name
     
         if len(sys.argv)>1 and sys.argv[1] == 'r':
             context.log_level='INFO'
-            self.conn=remote(HOST, PORT)
+            self.conn=remote(host_port.slice(' ')[0],host_port.slice(' ')[1])
         if libc_name!=None:
             libc=ELF(libc_name)
     else:
@@ -23,21 +22,15 @@ class Pwn:
         else:
             self.conn=process(file_name)
     
-        self.solver()
-        self.interactive()
-    
-    def push(self,key,value):
-        self.data[key]=value
-        self.logs.append({key:value})
-    
     def interactive(self):
-        for log in logs:
-            for key,value in log.items():
-                log.info('{} : {}'.format(key,value))
+        for key,value in data.items():
+            log.info('{} : {}'.format(key,hex(value)))
     
         self.conn.interactive()
     
     def solver(self):
     
 if __name__=='__main__':
-    pwn=Pwn('chall','libc_name','HOST',2718)
+    pwn=Pwn('chall','libc_name','host_port')
+    pwn.solver()
+    pwn.interactive()
