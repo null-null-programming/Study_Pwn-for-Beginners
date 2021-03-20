@@ -19,3 +19,7 @@ int main(){
 
     return 0;
 }
+
+//ABC
+//X:\x41\x42\x43
+//O:\x43\x42\x41
