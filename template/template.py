@@ -20,15 +20,11 @@ class Pwn:
 						libc=ELF('./'+file)
 						conn=process(elf_name,env={'LD_PRELOAD':file})
 
-		if len(sys.argv)>1 and sys.argv[1]=='r':
-			context.log_level='INFO'
-			conn=remote(host_port.split(' ')[0],host_port.split(' ')[1])
+				if len(sys.argv)>1 and sys.argv[1]=='r':
+					context.log_level='INFO'
+					conn=remote(host_port.split(' ')[0],host_port.split(' ')[1])
 
-		if libc==None:
-			self.solver(conn,logs,elf)
-		else:
-			self.solver(conn,logs,elf,libc)
-
+		self.solver(conn,logs,elf,libc)
 		self.interactive(conn,logs)
 
 	def interactive(self,conn,logs):
