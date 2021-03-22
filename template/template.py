@@ -17,7 +17,7 @@ class Pwn:
 						context.binary=elf_name
 						conn=process(elf_name)
 					elif cnt==1 and 'libc' in file:
-						libc_name=os.path.join(os.getcwd(),file)
+						libc_name=os.path.join('.',file)
 						libc=ELF(libc_name)
 						conn=process(elf_name,env={'LD_PRELOAD':libc_name})
 
